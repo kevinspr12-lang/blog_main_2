@@ -1,15 +1,21 @@
 from django.db import models
 
 
+
+
 # Create your models here.
 class category (models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
 
 
+
+
     class Meta:
         ordering = ('title',)
         verbose_name_plural = 'Categories'
+
+
 
 
     def __str__(self):
@@ -21,14 +27,20 @@ class category (models.Model):
 class post(models.Model):
 
 
+
+
         ACTIVE= 'active'
         DRAFT= 'draft'
+
+
 
 
         CHOICES_STATUS = {
             (ACTIVE, 'active'),
             (DRAFT, 'draft')
         }
+
+
 
 
         category = models.ForeignKey(category, related_name='post', on_delete=models.CASCADE)
@@ -38,6 +50,8 @@ class post(models.Model):
         created_at = models.DateTimeField(auto_now_add=True)
         status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=ACTIVE)
         image = models.ImageField(upload_to='upload/', blank=True, null=True)
+
+
 
 
         def __str__(self):
@@ -51,5 +65,13 @@ class Comment (models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
+
+
     def __str__(self):
         return self.name
+
+
+
+
+
+
